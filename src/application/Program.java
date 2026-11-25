@@ -1,68 +1,54 @@
+
 package application;
 
-import java.time.LocalDateTime;
-
-import entities.Voo;
-import exception.BusinessException;
+import java.util.Scanner;
 
 public class Program {
-    
-    public static void main(String args[]){
-    	
-    	Voo voo = null, voo2 = null, voo3 = null;
-    	
-    	//Testando caracteres inválidos 
-    	try { 
-    		
-    	voo = new Voo("la3456 ", "AZUL", LocalDateTime.parse("20/12/2025 12:55:22", Voo.FMT), LocalDateTime.parse("21/12/2025 13:55:22",Voo.FMT), " Las Vegas ");
-        voo.alterarCompanhiaAerea("latam");
-        
-    	}
-    	catch(BusinessException e ) {
-    		System.out.println(e.getMessage());
-    		e.printStackTrace();
-    	}
-    	
-    	System.out.println(voo);
- 
-    	try { 
-    		
-    		voo2 = new Voo("  ", "GOol", LocalDateTime.parse("25/12/2025 12:55:22", Voo.FMT ) , LocalDateTime.parse("26/12/2025 12:55:22", Voo.FMT ) , " Roma ");
-        
-    	}
-    	catch(BusinessException e ) {
-    		System.out.println(e.getMessage());
-    		e.printStackTrace();
-    	}
-    	
-    	System.out.println(voo2);
-    	
-    	
-    	//verificando horários iguais
-    	try {
-    		
-    		voo3 = new Voo("89P600", "Latam", LocalDateTime.parse("25/12/2025 12:55:22", Voo.FMT ) , LocalDateTime.parse("26/12/2025 12:55:22", Voo.FMT ), "Utinga");
-    		voo3.alterarDestino("  Pimba  ");
-    		
-    	}
-    	catch(BusinessException e) {
-    		System.out.println(e.getMessage());
-    		e.printStackTrace();
-    	}
-    	
-    	System.out.println(voo3);
-    	
-    	//Verificando horários nulos 
-    	try {
-    		   	
-    		voo.alterarHorarios(null, null);
-    	}
-    	catch(BusinessException e){
-    		System.out.println(e.getMessage());
-    		e.printStackTrace();
-    	}
-    	
-    	System.out.println(voo);
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int opcao = -1;
+
+        while (opcao != 0) {
+            System.out.println();
+            System.out.println("=== PAINEL DE AEROPORTO ===");
+            System.out.println("1 - Cadastrar voo");
+            System.out.println("2 - Listar voos");
+            System.out.println("3 - Atualizar status");
+            System.out.println("4 - Filtrar voos");
+            System.out.println("0 - Sair");
+            System.out.println("Selecione qual opção você deseja:");
+
+            opcao = sc.nextInt();
+
+            switch (opcao) {
+                case 1:
+                    System.out.println("Cadastrar voo");
+                    break;
+
+                case 2:
+                    System.out.println("Listar voos");
+                    break;
+
+                case 3:
+                    System.out.println("Atualizar status");
+                    break;
+
+                case 4:
+                    System.out.println("Filtrar voos");
+                    break;
+
+                case 0:
+                    System.out.println("Encerrando o programa...");
+                    break;
+
+                default:
+                    System.out.println("Opção inválida!");
+                    break;
+            }
+        }
+
+        sc.close();
     }
 }
-	
