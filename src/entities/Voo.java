@@ -83,12 +83,10 @@ public class Voo {
 			throw new BusinessException("Horário ausente, insira um novo horário onde a saída é depois do Embarque");
 		}
 		if(horarioSaida.equals(horarioEmbarque)) {
-			throw new BusinessException("Horário Inválido, o embarque deve ser antes da saída");
+			throw new BusinessException("Horários iguais são inválidos, o embarque deve ser antes da saída");
 		}
-		if (horarioEmbarque.isBefore(horarioSaida)) {
-		}
-		else {
-			throw new BusinessException("Horário Inválido, o embarque deve ser antes da saída");
+		if (!horarioEmbarque.isBefore(horarioSaida)) {
+			throw new BusinessException("horário de saída inserido antes do embarque, insira um horário de saída após o embarque");
 		}
 	}
 
@@ -104,7 +102,7 @@ public class Voo {
 		}
 	}
 
-	private String padronizarTexto(String entrada) {
+	public static String padronizarTexto(String entrada) {
 		entrada = entrada.trim();
 		entrada = entrada.toUpperCase();
 
